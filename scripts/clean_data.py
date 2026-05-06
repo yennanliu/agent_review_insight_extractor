@@ -7,9 +7,17 @@ def clean_text(text):
         return ''
     # Strip whitespace
     text = text.strip()
+    # Remove suffixes like "Sent from JPTT..."
+    text = re.sub(r'Sent from JPTT.*', '', text)
+    # Remove long dashes
+    text = re.sub(r'—+', '', text)
+    # Remove ==
+    text = re.sub(r'==+', '', text)
+    # Remove ! and :
+    text = re.sub(r'[!:]+', '', text)
     # Replace multiple spaces/newlines with single space
     text = re.sub(r'\s+', ' ', text)
-    return text
+    return text.strip()
 
 def main():
     input_file = 'data/raw/蝦皮_20260506_155631.csv'
