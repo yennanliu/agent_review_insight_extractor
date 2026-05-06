@@ -15,13 +15,15 @@ def clean_text(text):
     text = re.sub(r'==+', '', text)
     # Remove ! and :
     text = re.sub(r'[!:]+', '', text)
+    # Remove multiple quotes
+    text = re.sub(r'"+', '', text)
     # Replace multiple spaces/newlines with single space
     text = re.sub(r'\s+', ' ', text)
     return text.strip()
 
 def main():
     input_file = 'data/raw/蝦皮_20260506_155631.csv'
-    output_file = 'data/processed/cleaned_蝦皮_20260506_155631.csv'
+    output_file = 'data/processed/processed_蝦皮_20260506_155631.csv'
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     
     seen_urls = set()
